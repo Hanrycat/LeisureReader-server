@@ -18,10 +18,7 @@ public class UserController  {
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ReaderResult<User> login(@RequestParam("username") String username, @RequestParam("password") String password){
-        User user = new User();
-        user.setUserName(username);
-        user.setPassWord(password);
+    public ReaderResult<User> login(@RequestBody User user){
         User findUser = userService.login(user);
         if(findUser != null){
             findUser.setPassWord(null);
@@ -32,11 +29,11 @@ public class UserController  {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public ReaderResult<User> register(@RequestParam("username") String username, @RequestParam("password") String password){
-        User user = new User();
-        user.setUserName(username);
-        user.setPassWord(password);
-        Integer row = userService.register(user);
+    public ReaderResult<User> register(@RequestBody User user){
+        Integer row = null;
+        if(user != null) {
+            row = userService.register(user);
+        }
         if(row != null && row == 1){
             return new ReaderResult(true);
         }else{
