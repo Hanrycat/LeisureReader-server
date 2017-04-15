@@ -1,5 +1,6 @@
 package com.xsnail.controller;
 
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,15 +22,16 @@ public class DownloadController {
     @RequestMapping("/download")
     public ResponseEntity<byte[]> download() throws IOException {
 
-        String path="D:\\myprojects\\git\\LeisureReader\\LeisureReader\\app\\app-release.apk";
-        File file=new File(path);
+        String path = "D:\\myprojects\\git\\LeisureReader\\LeisureReader\\app\\app-release.apk";
+        File file = new File(path);
         HttpHeaders headers = new HttpHeaders();
-        String fileName=new String("LeisureReader.apk".getBytes("UTF-8"),"UTF-8");//为了解决中文名称乱码问题
+        String fileName = new String("LeisureReader.apk".getBytes("UTF-8"), "UTF-8");//为了解决中文名称乱码问题
         headers.setContentDispositionFormData("attachment", fileName);
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
                 headers, HttpStatus.CREATED);
 
     }
-
 }
+
+
