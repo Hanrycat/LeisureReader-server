@@ -20,6 +20,7 @@ public class DownloadController {
 
     @RequestMapping("/download")
     public ResponseEntity<byte[]> download() throws IOException {
+
         String path="D:\\myprojects\\git\\LeisureReader\\LeisureReader\\app\\app-release.apk";
         File file=new File(path);
         HttpHeaders headers = new HttpHeaders();
@@ -28,6 +29,7 @@ public class DownloadController {
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
                 headers, HttpStatus.CREATED);
+        
     }
 
 }
