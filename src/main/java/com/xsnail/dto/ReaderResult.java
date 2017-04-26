@@ -22,6 +22,12 @@ public class ReaderResult<T> {
         this.error = error;
     }
 
+    public ReaderResult(boolean ok, T data, String error) {
+        this.ok = ok;
+        this.data = data;
+        this.error = error;
+    }
+
     public boolean isOk() {
         return ok;
     }

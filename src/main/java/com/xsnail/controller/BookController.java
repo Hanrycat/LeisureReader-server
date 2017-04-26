@@ -30,8 +30,10 @@ public class BookController {
             BookShelf bookShelf = new BookShelf();
             bookShelf.setBookIdList(bookIdList);
             bookShelf.setUserName(userName);
-            return new ReaderResult<BookShelf>(true,bookShelf);
-        }else {
+            return new ReaderResult<BookShelf>(true,bookShelf,"同步成功");
+        }else if(bookList != null && bookList.size() == 0){
+            return new ReaderResult<BookShelf>(true,"云端无书籍");
+        } else {
             return new ReaderResult<BookShelf>(false);
         }
 
